@@ -8,18 +8,23 @@ class Token(NamedTuple):
     line: int
     column: int
 
+    def __str__(self):
+        return "<{0}, {1} >".format(self.type, self.value)
+
+code = open("code.txt", "r").read()
 
 def tokenize(code):
-    keywords = {'using', 'namespace', 'std', 'int',
+    keywords = {'using', 'namespace', 'std', 'float',
                 'string', 'cout', 'cin', '<<', '>>', 'if', 'else', 'return'}
     token_specification = [
+        ('COMMENT',             r'//+(.*)'),                           # COMMENT
         ('STD_OUT',             r'<<'),                                # STDOUT SYMBOL
         ('STD_IN',              r'>>'),                                # STDIN SYMBOL
         ('SAME_TYPE',           r','),                                 # Comma to denote Same type
         ('BLOCK_START',         r'{'),                                 # Block start
         ('BLOCK_END',           r'}'),                                 # Block end
         ('FUNCTION',            r'[A-Za-z]+([A-Za-z_]*)\(\)'),         # Function
-        ('STRINGLITERAL',       r'"+(.*)+"'),                          # String literal
+        ('STRINGLITERAL',       r'"+([^"]*)+"'),                       # String literal
         ('STARTENDSTRING',      r'"'),                                 # Start or end of string
         ('INCLUDE',             r'#include <[a-z]+.[a-z]+>'),          # Include statement
         ('NUMBER',              r'\d+(\.\d*)?'),                       # Integer or decimal number
@@ -59,7 +64,7 @@ def tokenize(code):
         yield Token(kind, value, line_num, column)
 
 
-code = '''
+codenot = r'''
 #include <iostream>
 using namespace std;
 

@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    float basic_salary, sales_made, commission, total;
+    string classification;
+
+    cout << "SALARY CALCULATOR";
+
+    cout << "\n\nEnter basic salary\n>>> ";
+    cin >> basic_salary;
+
+    cout << "\nEnter sales made\n>>> ";
+    cin >> sales_made;
+
+    commission = 0.2 * sales_made;
+
+    total = basic_salary + commission;
+
+    cout << "\nTotal: " << total << "\n\n";
+
+    // Compare & Classify
+    if (total > 0 && total > 40000) {
+        cout << "Seller's salary is high\n";
+    }
+    else {
+        cout << "Seller's salary is low\n";
+    }
+
+    return 0;
+}
