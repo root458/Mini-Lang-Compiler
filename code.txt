@@ -6,7 +6,7 @@ int main() {
     float basic_salary, sales_made, commission, total;
     string classification;
 
-    cout << "SALARY CALCULATOR";
+    cout << "\nSALARY CALCULATOR";
 
     cout << "\n\nEnter basic salary\n>>> ";
     cin >> basic_salary;
